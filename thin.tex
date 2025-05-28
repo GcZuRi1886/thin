@@ -9,4 +9,41 @@
 \begin{center}
     \textbf{\LARGE Theoretische Informatik}
 \end{center}
+
+\section*{Alphabete, Wörter und Sprachen}
+\begin{minipage}[t]{0.45\textwidth}
+    \subsection*{Alphabete}
+    Ein \textbf{Alphabet} $\Sigma$ ist eine endliche, nichtleere Menge von Symbolen.
+    
+    \subsection*{Sprachen}
+    Eine \textbf{Sprache} $L$ über einem Alphabet $\Sigma$ ist eine Menge von Wörtern, die aus Symbolen von $\Sigma$ bestehen. Eine Sprache kann endlich oder unendlich sein. Die leere Sprache wird mit $\emptyset$ bezeichnet.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+    \subsection*{Wörter}
+    Ein \textbf{Wort} $w$ ist eine endliche Folge von Symbolen aus einem Alphabet $\Sigma$. Die Länge eines Wortes $w$ wird mit $|w|$ bezeichnet. Das leere Wort wird mit $\varepsilon$ dargestellt und hat die Länge 0.
+    Die Menge aller Wörter über einem Alphabet $\Sigma$ wird mit $\Sigma^*$ bezeichnet (Kleenesche Hülle). 
+\end{minipage}
+\section*{Endliche Automaten}
+\begin{minipage}[t]{0.45\textwidth}
+    \subsection*{Deterministische endliche Automaten (DEA)}
+    Ein DEA ist ein 5-Tupel $M = (Q, \Sigma, \delta, q_0, F)$, wobei:
+    \begin{itemize}
+        \item $Q$ eine endliche Menge von Zuständen ist,
+        \item $\Sigma$ ein Alphabet ist,
+        \item $\delta: Q \times \Sigma \to Q$ die Übergangsfunktion ist,
+        \item $q_0 \in Q$ der Startzustand ist,
+        \item $F \subseteq Q$ die Menge der Endzustände ist.
+    \end{itemize}
+    \textbf{Übergangsfunktion:} $\delta(q_0, a_1) = q_1$
+
+    Ein Wort $w \in \Sigma^*$ wird akzeptiert, wenn es von $M$ verarbeitet wird und der Endzustand in $F$ liegt.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+    \subsection*{Nichtdeterministische endliche Automaten (NEA)}
+    Ein NEA ist ähnlich aufgebaut, aber die Übergangsfunktion $\delta$ kann mehrere Zustände für ein Symbol zurückgeben: $\delta: Q \times \Sigma \to 2^Q$. Ein NEA akzeptiert ein Wort, wenn es mindestens einen Pfad gibt, der das Wort vollständig verarbeitet und in einem Endzustand endet.
+\end{minipage}
+
+
 \end{document}
