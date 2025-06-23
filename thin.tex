@@ -110,10 +110,10 @@
             % Übergänge
             \path[->]
             % (q0) edge[loop above] node[align=left] {$a, Z_0/A Z_0$\\$a, A/AA$} ()
-            (q0) edge[left] node[above] {$b, A/\varepsilon$} (q1);
+            (q0) edge[left] node[above] {$b, A/z$} (q1);
         \end{tikzpicture}
         \end{center}
-        \textit{Legende: $x, y/z$ bedeutet: lese $x$, poppe $y$ vom Keller, pushe $z$ auf den Keller.}
+        \textit{Legende: $b, A/z$ bedeutet: lese $b$ aus Wort, poppe $A$ vom Keller, pushe $z$ auf den Keller.}
         
         \section*{Vergleich der Typen}
         \begin{tikzpicture}[
@@ -149,7 +149,7 @@
         \node[box, below=1.2cm of type2, fill=blue!25] (type3) {
         Typ 3: Reguläre Sprachen\\
         \textbf{Automat:} Endlicher Automat (DEA/NEA), RegEx\\
-        \textbf{Einschränkung:} Kein Speicher — kann nicht zählen
+        \textbf{Einschränkung:} Kein Speicher $\rightarrow$ kann nicht zählen
         };
         
         % Pfeile (Enthalten)
@@ -163,16 +163,19 @@
 \begin{minipage}[t]{0.45\textwidth}
     Eine \textbf{Turingmaschine} (TM) ist ein theoretisches Rechenmodell, das aus einem endlichen Steuerwerk, einem unendlichen Band und einem Lesekopf besteht. Sie kann Symbole auf dem Band lesen und schreiben sowie den Kopf bewegen.
     
-    Eine Turingmaschine wird durch ein 7-Tupel $M = (Q, \Sigma, \Gamma, \delta, q_0, q_{accept}, q_{reject})$ definiert:
+    Eine Turingmaschine wird durch ein 7-Tupel $M = (Q, \Sigma, \Gamma, \delta, q_0, q_{reject}, q_{accept})$ definiert:
     \begin{itemize}
         \item $Q$ eine endliche Menge von Zuständen,
         \item $\Sigma$ ein Eingabealphabet (ohne das leere Symbol),
         \item $\Gamma$ ein Bandalphabet (enthält $\Sigma$ und das leere Symbol),
         \item $\delta: Q \times \Gamma \to Q \times \Gamma \times \{L, R, S\}$ die Übergangsfunktion,
         \item $q_0 \in Q$ der Startzustand,
-        \item $q_{accept} \in Q$ der Akzeptierzustand,
-        \item $q_{reject} \in Q$ der Ablehnungszustand.
+        \item $q_{reject} \in Q$ der Ablehnungszustand,
+        \item $q_{accept} \in Q$ der Akzeptierzustand.
     \end{itemize}
+
+    \subsubsection*{Gödel-Nummerierung}
+    \{Aktueller Zustand\}1\{Symbol auf dem Band\}1\{Nächster Zustand\}1\{Symbol schreiben\}1\{Richtung bewegen (R=00, L=0)\}11
 \end{minipage}
 \hfill
 \begin{minipage}[t]{0.45\textwidth}
@@ -260,6 +263,9 @@
 
     \subsection*{P und NP}
     Wenn es gelingt, ein NP-vollständiges Problem in polynomieller Zeit zu lösen, dann gilt $P = NP$. Aktuell ist unklar, ob $P = NP$ oder $P \neq NP$.
+
+    \subsection*{Halteproblem}
+    Das Halteproblem ist ein klassisches Beispiel für ein unentscheidbares Problem. Es fragt, ob eine gegebene Turingmaschine auf einer bestimmten Eingabe anhält oder nicht. Es kann nicht entschieden werden, ob eine Turingmaschine für alle möglichen Eingaben anhält.
 \end{minipage}
 \hfill
 \begin{minipage}[t]{0.45\textwidth}
@@ -307,5 +313,51 @@
         \end{tikzpicture}
     \end{center}
 
+    \subsection*{Ackermann-Funktion}
+    Ist definiert als:
+    \[
+    A(m, n) =
+    \begin{cases}
+        n + 1 & \text{für } m = 0 \\
+        A(m - 1, 1) & \text{für } m > 0 \text{ \& } n = 0 \\
+        A(m - 1, A(m, n - 1)) & \text{für } m > 0 \text{ \& } n > 0
+    \end{cases}
+    \]
+    Die Ackermann-Funktion wächst sehr schnell und ist nicht in polynomieller Zeit berechenbar. Sie ist ein Beispiel für eine rekursive Funktion, die nicht primitiv rekursiv ist.
+\end{minipage}
+
+\begin{minipage}[t]{0.45\textwidth}
+    \subsection*{Primitiv rekursive Funktionen}
+    Eine Funktion ist \textbf{primitiv rekursiv}, wenn sie durch endliche Rekursion und Schleifen definiert ist. Beispiele sind Addition, Multiplikation.
+
+    \subsection*{Rekursive Funktionen}
+    Eine Funktion ist \textbf{rekursiv}, wenn sie durch eine Turingmaschine berechnet werden kann. Alle primitiven rekursiven Funktionen sind rekursiv, aber nicht alle rekursiven Funktionen sind primitiv rekursiv.
+
+    \subsection*{Regeln}
+    \begin{itemize}
+        \item \textbf{Entscheidbarkeit}: Wenn $A$ entscheidbar ist, dann ist auch $A \cup B$ entscheidbar für jede Sprache $B$. (Gilt auch für semi-entscheidbare Sprachen.)
+        \item \textbf{Semi-Entscheidbarkeit}: Wenn $A$ semi-entscheidbar ist, dann ist $\overline{A}$ nicht notwendigerweise semi-entscheidbar.
+        \item \textbf{Reduktion}: Wenn $A \preceq B$ und $B$ entscheidbar ist, dann ist auch $A$ entscheidbar.
+        \item \textbf{Komplement}: Wenn $A$ entscheidbar ist, dann ist auch das Komplement $\overline{A}$ entscheidbar.
+        \item \textbf{Vereinigung und Schnittmenge}: Wenn $A$ und $B$ entscheidbar sind, dann sind auch $A \cup B$ und $A \cap B$ entscheidbar.
+        \item \textbf{Submenge und Supermenge}: Wenn $A$ und $B$ entscheidbar sind, dann ist auch $A \subseteq B$ entscheidbar.
+    \end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+    \subsection*{Definitionen}
+    \begin{itemize}
+        \item \textbf{Schnittmenge}: $A \cap B = \{x | x \in A \text{ und } x \in B\}$
+        \item \textbf{Vereinigung}: $A \cup B = \{x | x \in A \text{ oder } x \in B\}$
+        \item \textbf{Submenge}: $A \subseteq B$ bedeutet, dass jedes Element von $A$ auch in $B$ enthalten ist.
+        \item \textbf{Supermenge}: $A \supseteq B$ bedeutet, dass jedes Element von $B$ auch in $A$ enthalten ist.
+        \item \textbf{Differenz}: $A \setminus B = \{x | x \in A \text{ und } x \notin B\}$
+        \item \textbf{Komplement}: $\overline{A} = \{x | x \notin A\}$
+        \item \textbf{Länge eines Wortes}: $|w|$ ist die Anzahl der Symbole in $w$.
+        \item \textbf{Vorkommen eines Symbols}: $|w|_a$ ist die Anzahl der Vorkommen des Symbols $a$ in $w$.
+        \item \textbf{Kleenesche Hülle}: $\Sigma^*$ ist die Menge aller endlichen Wörter über dem Alphabet $\Sigma$, einschließlich des leeren Wortes $\varepsilon$.
+        \item \textbf{Kleenesche Plus}: $\Sigma^+$ ist die Menge aller endlichen Wörter über dem Alphabet $\Sigma$, ohne das leere Wort..
+        \item \textbf{Konkatination}: Wenn $L_1$ und $L_2$ Sprachen sind, dann ist $L_1 L_2 = \{xy | x \in L_1 \text{ und } y \in L_2\}$ die Sprache, die aus der Verkettung aller Wörter von $L_1$ mit allen Wörtern von $L_2$ besteht.
+    \end{itemize}
 \end{minipage}
 \end{document}
